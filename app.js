@@ -17,4 +17,20 @@ app.post('/api/posts', (req, res) => {
   });
 });
 
+app.post('/api/login', async (req, res) => {
+  // mock user
+  const user = {
+    id: 1,
+    username: 'jane',
+    email: 'jane@email.com'
+  };
+
+  try {
+    const token = await jwt.sign({ user }, 'hexagon');
+    res.json({ token });
+  } catch (error) {
+    res.json({ error });
+  }
+});
+
 app.listen(port, () => console.log(`listening on port ${port}`));
